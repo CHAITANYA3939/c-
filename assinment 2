@@ -1,0 +1,136 @@
+Write a c++ program to find a farmer is asking you to tell him how many legs can be counted among all his animals. The farmer breeds three species: chickens = 2 legs cows = 4 legs pigs = 4 legs The farmer has counted his animals and he gives you a subtotal for each species. You have to implement a function that returns the total number offlegs of all the animals.
+
+#include <iostream>
+int countLegs(int chickens, int cows, int pigs) {
+    return chickens * 2 + cows * 4 + pigs * 4;
+}
+
+int main() {
+    int chickens, cows, pigs;
+    std::cout << "Enter number of chickens: ";
+    std::cin >> chickens;
+    std::cout << "Enter number of cows: ";
+    std::cin >> cows;
+    std::cout << "Enter number of pigs: ";
+    std::cin >> pigs;
+
+    int totalLegs = countLegs(chickens, cows, pigs);
+    std::cout << "Total legs: " << totalLegs << std::endl;
+
+    return 0;
+}
+
+Write a c++ program to Declare a class box, with length(Public variable) and width(Private variable) use setwidth ()and getwidth() function to set and display width and length.
+
+#include <iostream>
+
+class Box {
+public:
+    int length;
+private:
+    int width;
+
+public:
+    void setWidth(int w) {
+        width = w;
+    }
+
+    int getWidth() {
+        return width;
+    }
+};
+
+int main() {
+    Box box;
+    box.length = 10;
+    box.setWidth(5);
+
+    std::cout << "Length: " << box.length << std::endl;
+    std::cout << "Width: " << box.getWidth() << std::endl;
+
+    return 0;
+}
+write a c++Given N and an array(say coins[]) that contains some numbers (coins in rupees) .
+N is a coin, and the array contains various coins. The task is to make the change of N using the coins of the array. Make a change in such a way that a minimum number of coins are used.
+Let us take a input array coins[] = {10, 25, 5}, total coins = 3
+We have N = 30.
+The output is two as we can use one 25 rupee coin and a 5 rupee coin to make 30. (25 + 5 = 30)
+Similarly, coins [] = {1, 9, 6, 5}, total coins = 4
+N = 13
+The output is three as we need two 6 rupees coins and one 1 rupee coin. (6 + 6 + 1 = 13)
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+int minCoins(int N, std::vector<int> coins) {
+    std::sort(coins.begin(), coins.end());
+    int numCoins = 0;
+    for (int i = coins.size() - 1; i >= 0; i--) {
+        if (N == 0) {
+            break;
+        }
+        if (N >= coins[i]) {
+            int count = N / coins[i];
+            N = N % coins[i];
+            numCoins += count;
+        }
+    }
+    return numCoins;
+}
+
+int main() {
+    std::vector<int> coins1 = {10, 25, 5};
+    std::vector<int> coins2 = {1, 9, 6, 5};
+
+    std::cout << "Minimum coins required for 30: " << minCoins(30, coins1) << std::endl;
+    std::cout << "Minimum coins required for 13: " << minCoins(13, coins2) << std::endl;
+
+    return 0;
+}
+
+Declare a class box, with length(Public variable) and width(Private variable) use setwidth ()and getwidth() function to set and display width and length.
+Input:
+Enter the Length of box :6
+Enter the width of box :9
+Output :
+Length of box :6
+Width of box :9
+
+
+#include <iostream>
+
+using namespace std;
+
+class Box {
+public:
+    int length;
+private:
+    int width;
+
+public:
+    void setWidth(int w) {
+        width = w;
+    }
+
+    int getWidth() {
+        return width;
+    }
+
+    void display() {
+        cout << "Length of box :" << length << endl;
+        cout << "Width of box :" << width << endl;
+    }
+};
+
+int main() {
+    Box box;
+    cout << "Enter the Length of box :";
+    cin >> box.length;
+    cout << "Enter the width of box :";
+    int w;
+    cin >> w;
+    box.setWidth(w);
+    box.display();
+    return 0;
+}
