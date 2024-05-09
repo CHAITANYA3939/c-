@@ -1,0 +1,123 @@
+1) Write a program to count the number of vowels and consonants in a string
+
+#include <iostream>
+#include <cctype> 
+using namespace std;
+
+void countVowelsAndConsonants(const string& str) {
+    int vowels = 0, consonants = 0;
+    for (char c : str) {
+        if (isalpha(c)) { 
+            char lowerCaseC = tolower(c); 
+            if (lowerCaseC == 'a' || lowerCaseC == 'e' || lowerCaseC == 'i' || lowerCaseC == 'o' || lowerCaseC == 'u') {
+                vowels++;
+            } else {
+                consonants++;
+            }
+        }
+    }
+    cout << "Vowels: " << vowels << endl;
+    cout << "Consonants: " << consonants << endl;
+}
+
+int main() {
+    string str;
+    cout << "Enter a string: ";
+    getline(cin, str);
+    countVowelsAndConsonants(str);
+    return 0;
+}
+
+2) Write a program to print the prime numbers between the range from M to N
+#include <iostream>
+using namespace std;
+
+bool isPrime(int num) {
+    if (num <= 1) return false;
+    if (num == 2) return true;
+    if (num % 2 == 0) return false;
+    for (int i = 3; i * i <= num; i += 2) {
+        if (num % i == 0) return false;
+    }
+    return true;
+}
+
+void printPrimes(int start, int end) {
+    for (int i = start; i <= end; i++) {
+        if (isPrime(i)) {
+            cout << i << " ";
+        }
+    }
+}
+
+int main() {
+    int m, n;
+    cout << "Enter the range M to N: ";
+    cin >> m >> n;
+    cout << "Prime numbers between " << m << " and " << n << " are: ";
+    printPrimes(m, n);
+    return 0;
+} 
+
+3) Write a C++ program to find whether the person is eligible for vote or    not. And if that particular person is not eligible,then print how many    years are left to be eligible.
+
+#include <iostream>
+#include <fstream>
+
+void vote(int age) {
+    if (age >= 18) {
+        std::cout << "Person can vote.\n";
+    } else {
+        std::cout << "Person cannot vote. Eligible in " << 18 - age << " years.\n";
+    }
+}
+
+int main() {
+    std::ifstream inputFile("age.txt");
+    int age;
+    int count = 1;
+    std::cout << "Sample Output:\n";
+    while (inputFile >> age) {
+        std::cout << "Person " << count << ": ";
+        vote(age);
+        count++;
+    }
+    return 0;
+} 
+
+4) write a function in C++ to count the number of Uppercase alphabets present in a text.
+
+#include <string>
+int countUppercase(const std::string& text) {
+    int count = 0;
+    for (char c : text) {
+        if (std::isupper(c)) {
+            count++;
+        }
+    }
+    return count;
+}
+
+5)Write a program to generate multiplication table.
+
+#include <iostream>
+#include <iomanip>
+
+void printMultiplicationTable(int limit) {
+    std::cout << "Multiplication Table up to " << limit << ":\n";
+    std::cout << "------------------------------------\n";
+    for (int i = 1; i <= limit; i++) {
+        for (int j = 1; j <= limit; j++) {
+            std::cout << std::setw(4) << i * j;
+        }
+        std::cout << "\n";
+    }
+}
+
+int main() {
+    int limit;
+    std::cout << "Enter the limit for the multiplication table: ";
+    std::cin >> limit;
+    printMultiplicationTable(limit);
+    return 0;
+}
