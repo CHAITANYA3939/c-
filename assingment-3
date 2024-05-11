@@ -1,0 +1,74 @@
+1) Write a C++ program to throw multiple exceptions and define multiple catch statement. 
+
+#include <iostream>
+using namespace std;
+
+int main() {
+    double x;
+    cout << "Enter a number:x = 0.00001";
+    cin >> x;
+
+    try {
+        if (x <= 0) {
+            throw "The number is too small";
+        } else if (x != int(x)) {
+            throw "The number is not an integer";
+        } else if (x > INT_MAX) {
+            throw "The number is too large";
+        }
+        int y = static_cast<int>(x);
+        cout << "You entered: " << y << endl;
+    } catch (const char* msg) {
+        cerr << msg << endl;
+    } catch (...) {
+        cerr << "Unknown exception" << endl;
+    }
+
+    return 0;
+}
+
+
+2) Given two integer arrays A1[ ] and A2[ ] of size N and M respectively. Sort the 
+first array A1[ ] such that all the relative positions of the elements in the 
+first array are the same as the elements in the second array A2[ ].
+
+#include <bits/stdc++.h>
+using namespace std;
+void sortArray(int A1[], int A2[], int N, int M) {
+    unordered_map<int, vector<int>> mp;
+    for (int i = 0; i < N; i++) {
+        mp[A1[i]].push_back(i);
+    }
+
+    vector<int> result;
+    for (int i = 0; i < M; i++) {
+        for (int j = 0; j < mp[A2[i]].size(); j++) {
+            result.push_back(A1[mp[A2[i]][j]]);
+        }
+        mp[A2[i]].clear();
+    }
+
+    sort(A1, A1 + N);
+    for (int i = 0; i < N; i++) {
+        if (mp.find(A1[i]) == mp.end()) {
+            result.push_back(A1[i]);
+        }
+    }
+
+    for (int i = 0; i < N; i++) {
+        A1[i] = result[i];
+    }
+}
+
+int main() {
+    int N = 11, M = 4;
+    int A1[] = {2, 1, 2, 5, 7, 1, 9, 3, 6, 8, 8};
+    int A2[] = {2, 1, 8, 3};
+
+    sortArray(A1, A2, N, M);
+
+    for (int i = 0; i < N; i++) {
+        cout << A1[i] << " ";
+    }
+       return 0;
+}
